@@ -5,8 +5,6 @@ import { Formik, Form, Field, ErrorMessage  } from 'formik';
 import * as Yup from 'yup'
 import { Link } from 'react-router-dom';
 import { LoginInfo } from '../../types';
-
-
 interface Props {
     onSubmit: (values: LoginInfo) => void
 }
@@ -19,7 +17,6 @@ const validationSchema = Yup.object().shape({
 const Login = ({ onSubmit }: Props) => {
 
   const handleLogin = async (values: LoginInfo) => {
-    console.log(`Successfully logged in`, values)
     onSubmit(values)
   }
   
@@ -29,7 +26,7 @@ const Login = ({ onSubmit }: Props) => {
     <Col span={8} className={styles.body}>
         <Card className={styles.card} title={"Login"}>
             <Formik 
-            initialValues = {{ email: "testSh2@gmail.com", password: "testSh123"}}
+            initialValues = {{ email: "zoya@gmail.com", password: "Zoyaa123"}}
             validationSchema={validationSchema}
             onSubmit={handleLogin}>
                 <Form name="basic" autoComplete="off">
