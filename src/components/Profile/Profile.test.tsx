@@ -4,31 +4,51 @@ import '../../../matchMedia';
 import Profile from '.';
 
 const user = {
+    username: 'testusername',
+    email: 'test@gmail.com',
     name: 'testname',
-    email: 'test@gmail.com'
+    city: 'testcity',
+    about_me: 'testabout_me'
 }
 
 describe('Test Profile Page Component', () => {
     it('Profile Title Renders Correctly',async () => {
-        render(<BrowserRouter> <Profile name={user.name} email={user.email} /> </BrowserRouter>)
+        render(<BrowserRouter> <Profile username={user.username} email={user.email} name={user.name} city={user.city} about_me={user.about_me} /> </BrowserRouter>)
         const title = screen.getByText('Profile Page')
         expect(title).toBeDefined()       
     })
 
+    it('Username Title Renders Correctly',async () => {
+        render(<BrowserRouter> <Profile username={user.username} email={user.email} name={user.name} city={user.city} about_me={user.about_me} /> </BrowserRouter>)
+        const title = screen.getByText('Username:')
+        expect(title).toBeDefined()     
+    })
+    
+    it('Email Title Renders Correctly',async () => {
+        render(<BrowserRouter> <Profile username={user.username} email={user.email} name={user.name} city={user.city} about_me={user.about_me} /> </BrowserRouter>)
+        const title = screen.getByText('Email:')
+        expect(title).toBeDefined()     
+    })
+    
     it('Name Title Renders Correctly',async () => {
-        render(<BrowserRouter> <Profile name={user.name} email={user.email} /> </BrowserRouter>)
+        render(<BrowserRouter> <Profile username={user.username} email={user.email} name={user.name} city={user.city} about_me={user.about_me} /> </BrowserRouter>)
         const title = screen.getByText('Name:')
         expect(title).toBeDefined()     
     })
-
-    it('Email Title Renders Correctly',async () => {
-        render(<BrowserRouter> <Profile name={user.name} email={user.email} /> </BrowserRouter>)
-        const title = screen.getByText('Email:')
+        
+    it('City Title Renders Correctly',async () => {
+        render(<BrowserRouter> <Profile username={user.username} email={user.email} name={user.name} city={user.city} about_me={user.about_me} /> </BrowserRouter>)
+        const title = screen.getByText('City:')
+        expect(title).toBeDefined()     
+    })    
+    it('About Me Title Renders Correctly',async () => {
+        render(<BrowserRouter> <Profile username={user.username} email={user.email} name={user.name} city={user.city} about_me={user.about_me} /> </BrowserRouter>)
+        const title = screen.getByText('About Me:')
         expect(title).toBeDefined()     
     })
 
     it('Return Link Works Correctly', async () => {
-        const { getByText } = render(<BrowserRouter><Profile name={user.name} email={user.email} /></BrowserRouter>);
+        const { getByText } = render(<BrowserRouter><Profile username={user.username} email={user.email} name={user.name} city={user.city} about_me={user.about_me} /></BrowserRouter>);
         const returnLink = getByText('Return') as HTMLLinkElement
 
         fireEvent.click(returnLink);
