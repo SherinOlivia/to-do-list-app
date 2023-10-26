@@ -18,8 +18,8 @@ describe('Test Register Form', () => {
         render(<BrowserRouter>
         <Register onSubmit={mockProps} />
         </BrowserRouter>)
-        const title = screen.getByText('Name')
-        const form = screen.getByPlaceholderText("Enter Your Name") as HTMLInputElement
+        const title = screen.getByText('Username')
+        const form = screen.getByPlaceholderText("Enter Your Username") as HTMLInputElement
         expect(title).toBeDefined()       
         expect(form).toBeDefined()
     })
@@ -54,12 +54,12 @@ describe('Test Register Form', () => {
 
     it('onSubmit Works Correctly', async () => {
         const { getByPlaceholderText, getByText } = render(<BrowserRouter><Register onSubmit={mockProps} /></BrowserRouter>);
-        const nameInput = getByPlaceholderText("Enter Your Name") as HTMLInputElement
+        const usernameInput = getByPlaceholderText("Enter Your Username") as HTMLInputElement
         const emailInput = getByPlaceholderText("Enter Your Email") as HTMLInputElement
         const passwordInput = getByPlaceholderText("Enter Your Password") as HTMLInputElement
         const registerButton = getByText("register") as HTMLButtonElement;
 
-        fireEvent.change(nameInput, {target: {value: "testname" }});
+        fireEvent.change(usernameInput, {target: {value: "testusername" }});
         fireEvent.change(emailInput, {target: {value: "test@gmail.com" }});
         fireEvent.change(passwordInput, {target: {value: "test123Password" }});
         fireEvent.click(registerButton)
@@ -67,7 +67,7 @@ describe('Test Register Form', () => {
         await waitFor(() => {
             expect(mockProps).toHaveBeenCalledTimes(1);
             expect(mockProps).toHaveBeenCalledWith({
-                name: "testname",
+                username: "testusername",
                 email: "test@gmail.com",
                 password: "test123Password",
             });

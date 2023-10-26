@@ -4,7 +4,7 @@ import { Formik, Form, Field, ErrorMessage,  } from 'formik';
 import * as Yup from 'yup'
 import styles from './Register.module.css'
 import { RegisterInfo } from '../../types';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 interface Props {
     onSubmit: (values: RegisterInfo) => void
@@ -14,7 +14,7 @@ const passwordValidationError = (str: string) => {
 }
 
 const validationSchema = Yup.object().shape({
-    name: Yup.string().required('Please Enter Your Name'),
+    username: Yup.string().required('Please Enter Your Username'),
     email: Yup.string().email("Invalid Email!").required('Please Enter Your Email'),
     password: Yup.string().min(8, "Password must have at least 8 characters")
     .matches(/[0-9]/, passwordValidationError("digit"))
@@ -25,7 +25,7 @@ const validationSchema = Yup.object().shape({
 
   const Register = ({ onSubmit }: Props) => {
 
-      const handleRegister = async (values: RegisterInfo) => {
+    const handleRegister = async (values: RegisterInfo) => {
         console.log(`Successfully Registered..!`, values)
         onSubmit(values)
       }
@@ -36,18 +36,18 @@ const validationSchema = Yup.object().shape({
             <Col span={8} className={styles.body}>
                 <Card title={"Register"} className={styles.card}>
                     <Formik 
-                    initialValues = {{name: "", email: "", password: ""}}
+                    initialValues = {{username: "", email: "", password: ""}}
                     validationSchema={validationSchema}
                     onSubmit={handleRegister}>
                         <Form name="basic" autoComplete="off">
                     
-                            <AntForm.Item label="Name">
+                            <AntForm.Item label="Username">
                                 <div>
                                     <Field prefix={<SmileOutlined className="site-form-item-icon" />} 
-                                    name="name" as={Input} placeholder="Enter Your Name" />
+                                    name="username" as={Input} placeholder="Enter Your Username" />
                                     
                                     <div className={styles.error}>
-                                        <ErrorMessage name="name" />
+                                        <ErrorMessage name="username" />
                                     </div>
                                 </div>
                             </AntForm.Item>
@@ -79,7 +79,7 @@ const validationSchema = Yup.object().shape({
                                     <Button type="primary" htmlType="submit" >
                                     register
                                     </Button>
-                                    <Link to={'/login'} className={styles.link}>Back</Link>
+                                    {/* <Link to={'/login'} className={styles.link}>Back</Link> */}
                                 </div>
                             </AntForm.Item>
                         </Form>
