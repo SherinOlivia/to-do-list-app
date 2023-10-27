@@ -1,0 +1,39 @@
+
+.dashboardPage {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    padding: 25vh 25vw;
+}
+
+.dashboard {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    width: 1fr;
+    border-style: groove;
+}
+
+.dashboardBody {
+    border-bottom: 2px solid rgb(161, 161, 161);
+    margin: 10px 75px;
+}
+
+.dashboardData {
+    font-weight: bold;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.profileButton {
+    background-color: aquamarine;
+}
+
+.tasksButton {
+    background-color: rgb(160, 149, 241);
+}
+
+.logoutButton {
+    background-color: lightcoral;
+}

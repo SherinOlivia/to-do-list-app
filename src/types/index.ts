@@ -9,6 +9,10 @@ export interface LoginInfo {
     password: string;
 }
 
+export interface DashboardInfo {
+    username: string;
+    handleLogOut: () => Promise<void>
+}
 export interface ProfileInfo {
     username: string;
     email: string;
@@ -17,7 +21,8 @@ export interface ProfileInfo {
     about_me: string;
 }
 
-export interface TaskListInfo {
+export type TaskListInfo = {
+    id: number;
     title: string;
     description: string;
     purpose: string;
@@ -25,9 +30,13 @@ export interface TaskListInfo {
     completed: boolean;
 }
 
-export type TaskCreateInfo = Omit<TaskListInfo, 'completed'>
-
-export type TaskEditInfo = TaskCreateInfo
+export type CreateTaskInfo = {
+    title: string;
+    description: string;
+    purpose: string;
+    due_date: Date | null;
+}
+export type TaskEditInfo = CreateTaskInfo
 
 export interface TaskStatusUpdatetInfo {
     completed: boolean;

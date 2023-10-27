@@ -7,22 +7,23 @@ const Profile = () => {
 
   const getProfile = useCallback(
     async () => {
-
-
       try {
-        const response = await fetch (`https://w18sh-ry.up.railway.app/api/users/profile`, {
+        const response = await fetch (`https://w18shbe.azurewebsites.net/api/users/profile`, {
           method: 'GET',
           headers: {
               'Content-Type': 'application/json',
           },
           credentials: "include"
         })
+
         if(response.ok){
           const data = await response.json()
-          console.log("response:", response)
-          setUser?.(data.data)
+          setUser?.(data.data[0])
+          console.log("Profile Data Successfully fetched:", data.data[0]);
+        } else {
+          console.log("Error in Fetching User Data..")
         }
-        console.log("Error in Fetching User Data..")
+    
       } catch (error) {
         console.error(error)
       }

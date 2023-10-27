@@ -42,7 +42,7 @@ const Login = ({ onSubmit }: Props) => {
                         </div>
                     </AntForm.Item>
                 
-                    <AntForm.Item label="Password" name="password">
+                    <AntForm.Item label="Pass" name="password">
                         <div>
                             <Field prefix={<LockOutlined className="site-form-item-icon" />} 
                             name="password" as={Input} placeholder="Enter Your Password" 

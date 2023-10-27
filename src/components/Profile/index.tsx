@@ -12,7 +12,7 @@ const Profile: React.FC<ProfileInfo> = ({username, email, name, city, about_me }
         <p>Name: <span className={styles.profileData}>{name}</span></p>
         <p>City: <span className={styles.profileData}>{city}</span></p>
         <p>About Me: <span className={styles.profileData}>{about_me}</span></p>
-        <Link to="/" className={styles.link}>Return</Link>
+        <Link to="/dashboard" className={styles.link}>Return</Link>
         <div className={styles.profileBody}></div>
 
     </Card>

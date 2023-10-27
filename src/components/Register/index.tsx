@@ -4,7 +4,7 @@ import { Formik, Form, Field, ErrorMessage,  } from 'formik';
 import * as Yup from 'yup'
 import styles from './Register.module.css'
 import { RegisterInfo } from '../../types';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 interface Props {
     onSubmit: (values: RegisterInfo) => void
@@ -79,7 +79,7 @@ const validationSchema = Yup.object().shape({
                                     <Button type="primary" htmlType="submit" >
                                     register
                                     </Button>
-                                    {/* <Link to={'/login'} className={styles.link}>Back</Link> */}
+                                    <Link to={'/login'} className={styles.link}>Back</Link>
                                 </div>
                             </AntForm.Item>
                         </Form>

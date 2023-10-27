@@ -9,22 +9,27 @@ const Login = () => {
     console.log(`Successfully logged in`, values)
 
     try {
-        const response = await fetch (`https://w18sh-ry.up.railway.app/api/users/login`, {
+        const response = await fetch(`https://w18shbe.azurewebsites.net/api/users/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            credentials: "include",
+            credentials: 'include',
             body: JSON.stringify(values)
         })
-        const data = await response.json()
-        console.log(data)
-        console.log(data[0])
+        console.log(response)
         if (response.ok){
-          console.log(`Welcome ${data[0].username}..!`)
-            navigate('/dashboard');
+          const data = await response.json()
+          const result = JSON.stringify(data.data.message)
+          console.log(result)
+            if (data.success) {
+              console.log(`Welcome....!`)
+              navigate('/dashboard');
+            } else {
+              console.log(data.message); 
+            } 
         } else {
-            alert(data.errors)
+          alert("Login failed. Please check your credentials.");
         }
     } catch (error) {
         console.error(error)

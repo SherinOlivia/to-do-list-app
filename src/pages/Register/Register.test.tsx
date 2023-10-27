@@ -32,7 +32,7 @@ globalThis.fetch = jest.fn().mockResolvedValue({
   
       await waitFor(async () => {
         expect(fetch).toHaveBeenCalledWith(
-          `https://w18sh-ry.up.railway.app/api/users/register`,
+          `https://w18shbe.azurewebsites.net/api/users/register`,
           expect.objectContaining({
             method: 'POST',
             headers: {

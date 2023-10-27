@@ -14,9 +14,7 @@ const authContextValue: Context = {
 interface Props {
     children: ReactNode
 }
-
 export const AuthContext = createContext(authContextValue);
-
 
 const AppProvider = ({children}: Props) => {
     const [user, setUser] = useState<ProfileInfo>();
