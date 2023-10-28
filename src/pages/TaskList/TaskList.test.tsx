@@ -36,7 +36,7 @@ const response = {
   
       await waitFor(async () => {
         expect(globalThis.fetch).toHaveBeenCalledWith(
-          `https://w18shbe.azurewebsites.net/api/tasks`,
+          `https://w18sh-ry.up.railway.app/api/tasks`,
           expect.objectContaining({
             method: 'GET',
             headers: {

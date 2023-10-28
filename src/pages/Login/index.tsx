@@ -9,7 +9,7 @@ const Login = () => {
     console.log(`Successfully logged in`, values)
 
     try {
-        const response = await fetch(`https://w18shbe.azurewebsites.net/api/users/login`, {
+        const response = await fetch(`https://w18sh-ry.up.railway.app/api/users/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

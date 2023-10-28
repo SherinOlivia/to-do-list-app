@@ -33,7 +33,7 @@ describe('Testing Profile Page', () => {
 
     await waitFor( () => {
       expect(globalThis.fetch).toHaveBeenCalledWith(
-        `https://w18shbe.azurewebsites.net/api/users/profile`,
+        `https://w18sh-ry.up.railway.app/api/users/profile`,
         expect.objectContaining({
           method: 'GET',
           headers: {

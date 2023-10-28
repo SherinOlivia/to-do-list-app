@@ -16,7 +16,7 @@ const TaskList: React.FC = () => {
   const getName = useCallback(
     async () => {
       try {
-        const response = await fetch (`https://w18shbe.azurewebsites.net/api/users/profile`, {
+        const response = await fetch (`https://w18sh-ry.up.railway.app/api/users/profile`, {
           method: 'GET',
           headers: {
               'Content-Type': 'application/json',
@@ -46,7 +46,7 @@ const TaskList: React.FC = () => {
     async () => {
 
   try {
-    const response = await fetch('https://w18shbe.azurewebsites.net/api/tasks', {
+    const response = await fetch('https://w18sh-ry.up.railway.app/api/tasks', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
@@ -78,7 +78,7 @@ useEffect(() => {
   // remove/delete item
   const removeTask = async (taskId: number) => {
     try {
-        const response = await fetch(`https://w18shbe.azurewebsites.net/api/tasks/delete/${taskId}`, {
+        const response = await fetch(`https://w18sh-ry.up.railway.app/api/tasks/delete/${taskId}`, {
           method: 'DELETE',
           headers: {
             'Content-Type': 'application/json'
@@ -103,7 +103,7 @@ useEffect(() => {
       completed: newStatus,
     };
     try {
-      const response = await fetch(`https://w18shbe.azurewebsites.net/api/tasks/update/${task.id}`, {
+      const response = await fetch(`https://w18sh-ry.up.railway.app/api/tasks/update/${task.id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',

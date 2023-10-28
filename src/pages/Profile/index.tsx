@@ -8,7 +8,7 @@ const Profile = () => {
   const getProfile = useCallback(
     async () => {
       try {
-        const response = await fetch (`https://w18shbe.azurewebsites.net/api/users/profile`, {
+        const response = await fetch (`https://w18sh-ry.up.railway.app/api/users/profile`, {
           method: 'GET',
           headers: {
               'Content-Type': 'application/json',
