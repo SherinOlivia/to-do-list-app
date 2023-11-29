@@ -29,7 +29,7 @@
 - Create
 - Read (List of Tasks) 
 - Edit Task
-- Update Task Completion
+- Update Task Status
 - Delete Task
 <br>
 

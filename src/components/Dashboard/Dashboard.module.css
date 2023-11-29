@@ -1,13 +1,16 @@
 
 .dashboardPage {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    padding: 25vh 25vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 65vh;
+    padding: 5rem;
 }
 
 .dashboard {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    width: 1fr;
+    min-width: 300px;
+    width: 50%;
     border-style: groove;
 }
 

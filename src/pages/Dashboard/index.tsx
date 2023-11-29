@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
   const {user, setUser } = useContext(AuthContext)
+  const token = localStorage.getItem('authToken');
   const navigate = useNavigate()
   
   const handleLogOut = async () => {
@@ -12,14 +13,14 @@ const Dashboard = () => {
         const response = await fetch(`http://localhost:6060/api/users/logout`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
-            },
-            credentials: 'include'
+                'Content-Type': 'application/json',
+                Authorization: `${token}`
+            }
         })
         console.log(response)
         if (response.ok){
           const data = await response.json()
-            if (data.success) {
+            if (data.success == true) {
               console.log(`See you next time....!`)
               navigate('/login');
             } else {
@@ -38,19 +39,20 @@ const Dashboard = () => {
   const getDashboard = useCallback(
     async () => {
       try {
-        const response = await fetch (`https://w18sh-ry.up.railway.app/api/users/profile`, {
+        const response = await fetch (`http://127.0.0.1:5000/user/profile`, {
           method: 'GET',
           headers: {
               'Content-Type': 'application/json',
-          },
-          credentials: "include"
+              Authorization: `${token}`
+          }
         })
-    
+        console.log("token:", token)
         if(response.ok){
           const data = await response.json()
-          setUser?.(data.data[0])
-          console.log("Profile Data Successfully fetched:", data.data[0]);
+          setUser?.(data)
+          console.log("Profile Data Successfully fetched:", data);
         } else {
+          
           console.log("Error in Fetching User Data..")
         }
 

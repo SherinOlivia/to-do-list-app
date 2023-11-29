@@ -11,22 +11,23 @@ import { AuthContext } from '../../provider/AppProvider';
 const TaskList: React.FC = () => {
   const {user, setUser } = useContext(AuthContext)
   const [tasks, setTasks] = useState<TaskListInfo[]>([]);
+  const token = localStorage.getItem('authToken');
   const navigate = useNavigate();
 
   const getName = useCallback(
     async () => {
       try {
-        const response = await fetch (`https://w18sh-ry.up.railway.app/api/users/profile`, {
+        const response = await fetch (`http://127.0.0.1:5000/user/profile`, {
           method: 'GET',
           headers: {
               'Content-Type': 'application/json',
-          },
-          credentials: "include"
+              Authorization: `${token}`
+          }
         })
     
         if(response.ok){
           const data = await response.json()
-          setUser?.(data.data[0])
+          setUser?.(data)
         } else {
           console.log("Error in Fetching User's Name..")
         }
@@ -46,21 +47,29 @@ const TaskList: React.FC = () => {
     async () => {
 
   try {
-    const response = await fetch('https://w18sh-ry.up.railway.app/api/tasks', {
+    const response = await fetch('http://127.0.0.1:5000/task/list', {
       method: 'GET',
       headers: {
-        'Content-Type': 'application/json'
-      },
-      credentials: "include",
+        'Content-Type': 'application/json',
+        Authorization: `${token}`
+      }
     });
     const data = await response.json();
     console.log(data)
     
-    if (data && data.data) {
-      const datas = data.data.map((task: { id: number }) => ({
+    if (data) {
+      const datas = data.tasks.map((task: { id: number }) => ({
         ...task,
         key: task.id
       }));
+
+      datas.sort((a: { due_date: string }, b: { due_date: string }) => {
+        if (a.due_date && b.due_date) {
+          return new Date(a.due_date).getTime() - new Date(b.due_date).getTime();
+        }
+        return 0;
+      });
+      
       setTasks(datas);
     } else {
       setTasks([]);
@@ -76,19 +85,19 @@ useEffect(() => {
 }, [getTaskList])
 
   // remove/delete item
-  const removeTask = async (taskId: number) => {
+  const removeTask = async (task_id: number) => {
     try {
-        const response = await fetch(`https://w18sh-ry.up.railway.app/api/tasks/delete/${taskId}`, {
+        const response = await fetch(`http://127.0.0.1:5000/task/delete/${task_id}`, {
           method: 'DELETE',
           headers: {
-            'Content-Type': 'application/json'
-          },
-          credentials: "include",
+            'Content-Type': 'application/json',
+            Authorization: `${token}`
+          }
         })
   
         if(response) {
           setTasks((prevTasks) =>
-          prevTasks.filter((task) => task.id !== taskId)
+          prevTasks.filter((task) => task.id !== task_id)
         );
           console.log('Successfully Removed Task');
         }
@@ -97,29 +106,28 @@ useEffect(() => {
     }
   }
   
-  const handleCompleted = async (task: TaskListInfo) => {
-    const newStatus = !task.completed;
+  const handleStatus = async (task: TaskListInfo) => {
+    const newStatus = task.status === 'COMPLETED' ? 'ONGOING' : 'COMPLETED';
     const requestBody = {
-      completed: newStatus,
+      status: newStatus,
     };
     try {
-      const response = await fetch(`https://w18sh-ry.up.railway.app/api/tasks/update/${task.id}`, {
+      const response = await fetch(`http://127.0.0.1:5000/task/update/${task.id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
+          Authorization: `${token}`
         },
-        body: JSON.stringify(requestBody),
-        credentials: 'include',
+        body: JSON.stringify(requestBody)
       });
   
       if (response) {
         setTasks((prevTasks) =>
           prevTasks.map((prevTask) =>
-            prevTask.id === task.id ? { ...prevTask, completed: newStatus } : prevTask
-          )
+            prevTask.id === task.id ? { ...prevTask, status: newStatus } : prevTask
+          ) as TaskListInfo[]
         );
-        navigate(0);
-        console.log('Successfully Updated Task Completion');
+        console.log('Successfully Updated Task Status');
       }
     } catch (error) {
       console.error(error);
@@ -150,17 +158,23 @@ useEffect(() => {
       dataIndex: 'due_date',
       key: 'due_date',
       render: (dueDate) => dueDate ? format(new Date(dueDate), 'EEEE, d MMMM yyyy') : 'N/A',
-    },        
+    },   
     {
-      title: 'Completed',
-      dataIndex: 'completed',
-      key: 'completed',
+      title: 'Priority',
+      dataIndex: 'priority',
+      key: 'priority',
+      render: (text) => text || 'N/A',
+    },       
+    {
+      title: 'Status',
+      dataIndex: 'status',
+      key: 'status',
       render: (_, record) => (
         <>
           <label>
-            <Checkbox
-              checked={record.completed}
-              onChange={() => handleCompleted(record)}
+            <Checkbox type="checkbox"
+              checked={record.status === 'COMPLETED'}
+              onChange={() => handleStatus(record)}
             />
           </label>
         </>
@@ -181,21 +195,24 @@ useEffect(() => {
   
 
   return (
-    <>
     <div className={styles.categoryList}>
-      <div className={styles.categoryTitle}>
-        <span><Button type={'primary'} onClick={() => navigate('/add')}>Create New</Button></span>
+      <div>
+        <div className={styles.categoryTitle}>
+          <span><Button type={'primary'} onClick={() => navigate('/add')}>Create New</Button></span>
 
-        <h1> {user?.username}'s Task List </h1>
+          <h1> {user?.username}'s Task List </h1>
+        </div>
+
+        <TaskListComponent 
+        columns={columns} 
+        data={tasks || []}
+        />
+
+        <Link to="/dashboard" className={styles.link}>Return</Link>
+
+        <div className={styles.taskListBody}></div>
       </div>
-      <TaskListComponent
-      columns={columns} 
-      data={tasks || []}
-      />
-      <Link to="/dashboard" className={styles.link}>Return</Link>
-      <div className={styles.taskListBody}></div>
     </div>
-    </>
   )
 }
 

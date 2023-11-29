@@ -10,7 +10,7 @@ interface Props {
 }
 
 const validationSchema = Yup.object().shape({
-    email: Yup.string().email("Invalid Email!").required('Please Enter Your Email'),
+    username: Yup.string().required('Please Enter Your Username'),
     password: Yup.string().required('Please Enter Your Password')
 })
 
@@ -26,18 +26,18 @@ const Login = ({ onSubmit }: Props) => {
     <Col span={8} className={styles.body}>
         <Card className={styles.card} title={"Login"}>
             <Formik 
-            initialValues = {{ email: "zoya@gmail.com", password: "Zoyaa123"}}
+            initialValues = {{ username: "zoyaaa", password: "Zoyaa123"}}
             validationSchema={validationSchema}
             onSubmit={handleLogin}>
                 <Form name="basic" autoComplete="off">
                      
-                    <AntForm.Item label="Email" name="email">
+                    <AntForm.Item label="Username" name="username">
                         <div>
                             <Field prefix={<UserOutlined className="site-form-item-icon" />} 
-                        name="email" as={Input} placeholder="Enter Your Email" />
+                        name="username" as={Input} placeholder="Enter Your Username" />
                         
                             <div className={styles.error}>
-                                <ErrorMessage name="email" />
+                                <ErrorMessage name="username" />
                             </div>
                         </div>
                     </AntForm.Item>

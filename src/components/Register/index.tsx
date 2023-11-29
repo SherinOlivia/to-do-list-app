@@ -14,6 +14,9 @@ const passwordValidationError = (str: string) => {
 }
 
 const validationSchema = Yup.object().shape({
+    name: Yup.string().required('Please Enter Your Name'),
+    city: Yup.string().required('Please Enter Your City'),
+    about_me: Yup.string().required('Tell us about yourself'),
     username: Yup.string().required('Please Enter Your Username'),
     email: Yup.string().email("Invalid Email!").required('Please Enter Your Email'),
     password: Yup.string().min(8, "Password must have at least 8 characters")
@@ -36,11 +39,44 @@ const validationSchema = Yup.object().shape({
             <Col span={8} className={styles.body}>
                 <Card title={"Register"} className={styles.card}>
                     <Formik 
-                    initialValues = {{username: "", email: "", password: ""}}
+                    initialValues = {{name: "", city: "", about_me: "",username: "", email: "", password: ""}}
                     validationSchema={validationSchema}
                     onSubmit={handleRegister}>
                         <Form name="basic" autoComplete="off">
                     
+                            <AntForm.Item label="Name" name="name">
+                                <div>
+                                    <Field prefix={<SmileOutlined className="site-form-item-icon" />} 
+                                    name="name" as={Input} placeholder="Enter Your Name" />
+
+                                    <div className={styles.error}>
+                                        <ErrorMessage name="name" />
+                                    </div>
+                                </div>
+                            </AntForm.Item>
+
+                            <AntForm.Item label="City" name="city">
+                                <div>
+                                    <Field prefix={<SmileOutlined className="site-form-item-icon" />} 
+                                    name="city" as={Input} placeholder="Enter Your City" />
+
+                                    <div className={styles.error}>
+                                        <ErrorMessage name="city" />
+                                    </div>
+                                </div>
+                            </AntForm.Item>
+
+                            <AntForm.Item label="About Me" name="about_me">
+                                <div>
+                                    <Field prefix={<SmileOutlined className="site-form-item-icon" />} 
+                                    name="about_me" as={Input} placeholder="Tell us about yourself" />
+
+                                    <div className={styles.error}>
+                                        <ErrorMessage name="about_me" />
+                                    </div>
+                                </div>
+                            </AntForm.Item>
+
                             <AntForm.Item label="Username">
                                 <div>
                                     <Field prefix={<SmileOutlined className="site-form-item-icon" />} 

@@ -1,7 +1,7 @@
 import { Table } from "antd"
 import { ColumnsType } from "antd/es/table";
 import { TaskListInfo } from "../../types";
-
+import styles from './TaskList.module.css'
 interface Props {
     data: TaskListInfo[];
     columns: ColumnsType<TaskListInfo>;
@@ -15,7 +15,7 @@ const TaskList = ({ data, columns} : Props) => {
     return (
       <>
         
-        <Table columns={columns} dataSource={data} pagination={pagination} />
+        <Table className={styles.categoryBody} columns={columns} dataSource={data} pagination={pagination} />
 
       </>
 

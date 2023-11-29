@@ -32,14 +32,14 @@ const columns: ColumnsType<TaskListInfo> = [
       render: (Date) => Date || 'N/A',
     },
     {
-      title: 'Completed',
-      dataIndex: 'completed',
-      key: 'completed',
+      title: 'Status',
+      dataIndex: 'status',
+      key: 'status',
       render: (_, record) => (
         <>
           <label>
             <Checkbox
-              checked={record.completed}
+              checked={record.status === 'COMPLETED'}
               onChange={() => {}}
             />
           </label>

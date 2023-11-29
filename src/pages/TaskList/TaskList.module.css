@@ -1,7 +1,11 @@
+:root {
+    width: 100%;
+}
+
 .categoryList {
-    min-width: 90vw;
-    min-height: 50vh;
-    padding: 5vh 5vw;
+    width: 90%;
+    max-width: 90%;
+    padding: 1em
 }
 
 .categoryTitle {

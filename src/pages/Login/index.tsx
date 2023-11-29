@@ -9,20 +9,22 @@ const Login = () => {
     console.log(`Successfully logged in`, values)
 
     try {
-        const response = await fetch(`https://w18sh-ry.up.railway.app/api/users/login`, {
+        const response = await fetch(`http://127.0.0.1:5000/auth/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            credentials: 'include',
             body: JSON.stringify(values)
         })
         console.log(response)
         if (response.ok){
           const data = await response.json()
-          const result = JSON.stringify(data.data.message)
+          const result = data.message
+          const token = data.token
           console.log(result)
-            if (data.success) {
+            if (data.success == true) {
+              console.log("Data:", data)
+              localStorage.setItem('authToken', token) 
               console.log(`Welcome....!`)
               navigate('/dashboard');
             } else {

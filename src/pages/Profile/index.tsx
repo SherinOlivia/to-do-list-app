@@ -4,22 +4,23 @@ import { AuthContext } from '../../provider/AppProvider';
 
 const Profile = () => {
   const {user, setUser } = useContext(AuthContext)
+  const token = localStorage.getItem('authToken');
 
   const getProfile = useCallback(
     async () => {
       try {
-        const response = await fetch (`https://w18sh-ry.up.railway.app/api/users/profile`, {
+        const response = await fetch (`http://127.0.0.1:5000/user/profile`, {
           method: 'GET',
           headers: {
               'Content-Type': 'application/json',
-          },
-          credentials: "include"
+              Authorization: `${token}`
+          }
         })
 
         if(response.ok){
           const data = await response.json()
-          setUser?.(data.data[0])
-          console.log("Profile Data Successfully fetched:", data.data[0]);
+          setUser?.(data)
+          console.log("Profile Data Successfully fetched:", data);
         } else {
           console.log("Error in Fetching User Data..")
         }

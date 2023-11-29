@@ -2,10 +2,13 @@ export interface RegisterInfo {
     username: string;
     email: string;
     password: string;
+    name: string,
+    city: string;
+    about_me: string;
 }
 
 export interface LoginInfo {
-    email: string;
+    username: string;
     password: string;
 }
 
@@ -21,19 +24,25 @@ export interface ProfileInfo {
     about_me: string;
 }
 
+export enum TaskStatus {
+    ONGOING = "ONGOING",
+    COMPLETED = "COMPLETED"
+}
 export type TaskListInfo = {
     id: number;
     title: string;
     description: string;
     purpose: string;
+    priority: string;
     due_date: Date;
-    completed: boolean;
+    status: TaskStatus;
 }
 
 export type CreateTaskInfo = {
     title: string;
     description: string;
     purpose: string;
+    priority: string;
     due_date: Date | null;
 }
 export type TaskEditInfo = CreateTaskInfo
