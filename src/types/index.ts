@@ -13,7 +13,7 @@ export interface LoginInfo {
 }
 
 export interface DashboardInfo {
-    username: string;
+    name: string;
     handleLogOut: () => Promise<void>
 }
 export interface ProfileInfo {

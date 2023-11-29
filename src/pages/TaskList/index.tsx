@@ -200,7 +200,7 @@ useEffect(() => {
         <div className={styles.categoryTitle}>
           <span><Button type={'primary'} onClick={() => navigate('/add')}>Create New</Button></span>
 
-          <h1> {user?.username}'s Task List </h1>
+          <h1> {user?.name}'s Task List </h1>
         </div>
 
         <TaskListComponent 

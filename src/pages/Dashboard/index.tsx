@@ -10,7 +10,7 @@ const Dashboard = () => {
   
   const handleLogOut = async () => {
     try {
-        const response = await fetch(`http://localhost:6060/api/users/logout`, {
+        const response = await fetch(`http://127.0.0.1:5000/auth/logout`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -21,6 +21,7 @@ const Dashboard = () => {
         if (response.ok){
           const data = await response.json()
             if (data.success == true) {
+              localStorage.removeItem('authToken');
               console.log(`See you next time....!`)
               navigate('/login');
             } else {
@@ -69,7 +70,7 @@ const Dashboard = () => {
 
 if(user) {
   return (
-    <DashboardForm username={user?.username} handleLogOut={handleLogOut} />
+    <DashboardForm name={user?.name} handleLogOut={handleLogOut} />
 
   );
 }
