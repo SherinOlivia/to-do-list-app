@@ -12,7 +12,7 @@ const EditTask = () => {
 
     const getTask = useCallback(async () => {
         try {
-            const response = await fetch(`http://127.0.0.1:5000/task/${id}`, {
+            const response = await fetch(`http://34.124.167.35/task/${id}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -43,7 +43,7 @@ const EditTask = () => {
                 return;
             }
 
-            const response = await fetch(`http://127.0.0.1:5000/task/edit/${id}`, {
+            const response = await fetch(`http://34.124.167.35/task/edit/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

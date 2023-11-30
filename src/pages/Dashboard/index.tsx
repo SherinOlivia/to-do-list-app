@@ -10,7 +10,7 @@ const Dashboard = () => {
   
   const handleLogOut = async () => {
     try {
-        const response = await fetch(`http://127.0.0.1:5000/auth/logout`, {
+        const response = await fetch(`http://34.124.167.35/auth/logout`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -40,7 +40,7 @@ const Dashboard = () => {
   const getDashboard = useCallback(
     async () => {
       try {
-        const response = await fetch (`http://127.0.0.1:5000/user/profile`, {
+        const response = await fetch (`http://34.124.167.35/user/profile`, {
           method: 'GET',
           headers: {
               'Content-Type': 'application/json',

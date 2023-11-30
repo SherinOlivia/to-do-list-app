@@ -17,7 +17,7 @@ const TaskList: React.FC = () => {
   const getName = useCallback(
     async () => {
       try {
-        const response = await fetch (`http://127.0.0.1:5000/user/profile`, {
+        const response = await fetch (`http://34.124.167.35/user/profile`, {
           method: 'GET',
           headers: {
               'Content-Type': 'application/json',
@@ -47,7 +47,7 @@ const TaskList: React.FC = () => {
     async () => {
 
   try {
-    const response = await fetch('http://127.0.0.1:5000/task/list', {
+    const response = await fetch('http://34.124.167.35/task/list', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -87,7 +87,7 @@ useEffect(() => {
   // remove/delete item
   const removeTask = async (task_id: number) => {
     try {
-        const response = await fetch(`http://127.0.0.1:5000/task/delete/${task_id}`, {
+        const response = await fetch(`http://34.124.167.35/task/delete/${task_id}`, {
           method: 'DELETE',
           headers: {
             'Content-Type': 'application/json',
@@ -112,7 +112,7 @@ useEffect(() => {
       status: newStatus,
     };
     try {
-      const response = await fetch(`http://127.0.0.1:5000/task/update/${task.id}`, {
+      const response = await fetch(`http://34.124.167.35/task/update/${task.id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
