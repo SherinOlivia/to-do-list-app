@@ -24,9 +24,8 @@
 - Register 
 - Login 
 - Profile
-- Profile Data Update
 **1. Task**
-- Create
+- Create new Task
 - Read (List of Tasks) 
 - Edit Task
 - Update Task Status
@@ -35,7 +34,7 @@
 
 ## Deployed link (New Feature: Profile Page): 
 <p align="center">
-<a href="x">x</a>
+<a href="https://week22-44a31.web.app">week22-44a31.web.app</a>
 </p> 
 <br>
 

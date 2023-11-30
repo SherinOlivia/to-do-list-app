@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "week18sh"
-  }
+    "default": "week22-44a31",
+    "week22": "week22-44a31"
+  },
+  "targets": {},
+  "etags": {}
 }
