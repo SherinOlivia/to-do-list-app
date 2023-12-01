@@ -10,7 +10,7 @@ const Dashboard = () => {
   
   const handleLogOut = async () => {
     try {
-        const response = await fetch(`http://34.124.167.35/auth/logout`, {
+        const response = await fetch(`https://sherinolivia-ttfsxqentq-uc.a.run.app/auth/logout`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -40,7 +40,7 @@ const Dashboard = () => {
   const getDashboard = useCallback(
     async () => {
       try {
-        const response = await fetch (`http://34.124.167.35/user/profile`, {
+        const response = await fetch (`https://sherinolivia-ttfsxqentq-uc.a.run.app/user/profile`, {
           method: 'GET',
           headers: {
               'Content-Type': 'application/json',

@@ -9,7 +9,7 @@ import { Register as RegisterForm } from '../../components';
         console.log(`Successfully Registered..!`, values)
     
         try {
-            const response = await fetch (`http://34.124.167.35/auth/registration`, {
+            const response = await fetch (`https://sherinolivia-ttfsxqentq-uc.a.run.app/auth/registration`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

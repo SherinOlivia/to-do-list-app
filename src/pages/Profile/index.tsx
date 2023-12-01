@@ -9,7 +9,7 @@ const Profile = () => {
   const getProfile = useCallback(
     async () => {
       try {
-        const response = await fetch (`http://34.124.167.35/user/profile`, {
+        const response = await fetch (`https://sherinolivia-ttfsxqentq-uc.a.run.app/user/profile`, {
           method: 'GET',
           headers: {
               'Content-Type': 'application/json',
